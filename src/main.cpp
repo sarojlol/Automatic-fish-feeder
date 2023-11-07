@@ -5,17 +5,19 @@
 #include <LiquidCrystal_I2C.h>
 #include <ESP32Encoder.h>
 
-#define BLYNK_TEMPLATE_ID            "TMPL6yRU2JxOI" 
-#define BLYNK_TEMPLATE_NAME          "Fish Feeder"
-#define BLYNK_AUTH_TOKEN             "2oZEri2JfLLGI_s5OhaAA4ph4nSZrS4P"
 
+#define BLYNK_TEMPLATE_ID "TMPL6Y_THKES1"
+#define BLYNK_TEMPLATE_NAME "Fish Feeder"
+//#define BLYNK_AUTH_TOKEN             "2oZEri2JfLLGI_s5OhaAA4ph4nSZrS4P"
 
-#include <WiFi.h>
-#include <WiFiClient.h>
-#include <BlynkSimpleEsp32.h>
+#define BLYNK_FIRMWARE_VERSION        "0.1.0"
 
-char ssid[] = "Kaisit 2.4G";
-char pass[] = "0818808542";
+#include <BlynkEdgent.h>
+
+#define BLYNK_PRINT Serial
+//#define BLYNK_DEBUG
+
+#define APP_DEBUG
 
 LiquidCrystal_I2C lcd(PCF8574_ADDR_A21_A11_A01, 4, 5, 6, 16, 11, 12, 13, 14, POSITIVE);
 ESP32Encoder encoder;
@@ -59,12 +61,12 @@ void setup()
   encoder.attachHalfQuad(rotaryDT, rotaryCLK);
   encoder.setCount ( 0 );
 
-  Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
+  BlynkEdgent.begin();
 }
 
 void loop()
 {
-  Blynk.run();
+  BlynkEdgent.run();
   stepper_run();
   static bool blynk_moveOnce;
   static int8_t last_position;
