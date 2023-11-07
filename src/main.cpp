@@ -22,6 +22,10 @@ char pass[] = "0818808542";
 bool blynk_button;
 int blynk_distance;
 
+BLYNK_CONNECTED() {
+  Blynk.syncAll();
+}
+
 BLYNK_WRITE(V0)
 {
   blynk_button = param.asInt();
@@ -46,7 +50,7 @@ void loop()
   static int8_t last_position;
   if ((blynk_button == 1) &! blynk_moveOnce)
   {
-    stepper_move(false, blynk_distance);
+    stepper_move(true, blynk_distance);
     blynk_moveOnce = true;
   }
   else if ((blynk_button == 0) && blynk_moveOnce)
