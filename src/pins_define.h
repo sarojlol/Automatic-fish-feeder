@@ -1,4 +1,4 @@
-#define IN1 12
+#define IN1 12 
 #define IN2 14
 #define IN3 27
 #define IN4 26
