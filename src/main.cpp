@@ -24,7 +24,7 @@ ESP32Encoder encoder;
 
 bool blynk_button;
 float blynk_rawMs = 2;
-int blynk_ms = 2000;
+int blynk_ms = 1500;
 
 BLYNK_CONNECTED() {
   Blynk.syncAll();
